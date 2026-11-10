@@ -1,0 +1,1 @@
+# aspnetcore10-aspire
