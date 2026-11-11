@@ -1,5 +1,9 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.CarvedRock_Api>("api");
+var db = builder.AddPostgres("db").AddDatabase("CarvedRockPostgres");
+
+builder.AddProject<Projects.CarvedRock_Api>("api")
+    .WithReference(db)
+    .WaitFor(db);
 
 builder.Build().Run();
